@@ -33,8 +33,7 @@ def deleteItem(args):
     RemTodo.close()
 
     if delTodo > numTodo:
-        print(delTodo - numTodo)
-        print(f"Error: todo #{delTodo} does not exist.")
+        print(f"Error: todo #{delTodo} does not exist. Nothing deleted.")
     else:
         RemTodo = open('todo.txt', 'w+')
         print(f"Deleted todo #{delTodo}")
@@ -46,10 +45,37 @@ def deleteItem(args):
 
 
 def completeItem(args):
-    print(args)
+    comTodo = int(args[0])
+
+    RemTodo = open('todo.txt', 'r')
+    Todos = RemTodo.readlines()
+    numTodo = len(Todos)
+    RemTodo.close()
+
+    if comTodo > numTodo:
+        print(f"Error: todo #{comTodo} does not exist.")
+    else:
+        print(f"Marked todo #{comTodo} as done.")
+        oppIdx = numTodo - comTodo
+        compTodo = "x {today} {Todos[oppIdx]}"
+
+        # Delete From todo.txt
+        RemTodo = open('todo.txt', 'w+')
+        Todos.pop(oppIdx)
+        Todos = "".join(Todos)
+        RemTodo.write(Todos)
+        RemTodo.close()
+
+        # Added to done.txt
+        RemTodo = open('done.txt', 'r+')
+        content = RemTodo.read()
+        RemTodo.seek(0, 0)
+        RemTodo.write(compTodo.rstrip('\r\n') + '\n' + content)
+
+    
 
 
 def stats(args):
     pending = len(RemTodo.readlines())
     completed = len(CompTodo.readlines())
-    print(f"${today} Pending : {pending} Completed : {completed}")
+    print(f"{today} Pending : {pending} Completed : {completed}")
