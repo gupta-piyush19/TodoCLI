@@ -26,7 +26,23 @@ def addItem(args):
 
 def deleteItem(args):
     delTodo = int(args[0])
-    print(f"Deleted todo #{delTodo}")
+
+    RemTodo = open('todo.txt', 'r')
+    Todos = RemTodo.readlines()
+    numTodo = len(Todos)
+    RemTodo.close()
+
+    if delTodo > numTodo:
+        print(delTodo - numTodo)
+        print(f"Error: todo #{delTodo} does not exist.")
+    else:
+        RemTodo = open('todo.txt', 'w+')
+        print(f"Deleted todo #{delTodo}")
+        oppIdx = numTodo - delTodo
+        Todos.pop(oppIdx)
+        Todos = "".join(Todos)
+        RemTodo.write(Todos)
+        RemTodo.close()
 
 
 def completeItem(args):
