@@ -11,7 +11,7 @@ def showItems(args):
     cnt = numTodo
     for todo in Todos:
         if(todo != " "):
-            print("[", cnt, "]", todo[:-1])
+            print(f"[{cnt}] {todo[:-1]}")
             cnt -= 1
 
 
@@ -21,11 +21,12 @@ def addItem(args):
     content = RemTodo.read()
     RemTodo.seek(0, 0)
     RemTodo.write(todoAdd.rstrip('\r\n') + '\n' + content)
-    print('Added todo: "', todoAdd, '"')
+    print(f'Added todo: "{todoAdd}"')
 
 
 def deleteItem(args):
-    int(args[0])
+    delTodo = int(args[0])
+    print(f"Deleted todo #{delTodo}")
 
 
 def completeItem(args):
@@ -35,4 +36,4 @@ def completeItem(args):
 def stats(args):
     pending = len(RemTodo.readlines())
     completed = len(CompTodo.readlines())
-    print(today, "Pending :", pending, "Completed :", completed)
+    print(f"${today} Pending : {pending} Completed : {completed}")
