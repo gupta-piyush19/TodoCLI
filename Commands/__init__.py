@@ -7,6 +7,5 @@ commandsDict = {
     'ls': todos.showItems,
     'del': todos.deleteItem,
     'done': todos.completeItem,
-    'help': todos.usage,
     'report': todos.stats,
 }

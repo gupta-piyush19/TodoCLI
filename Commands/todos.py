@@ -1,28 +1,28 @@
 def showItems(args):
-    cnt = 0
     help_file = open('todo.txt', 'r+')
-    todo = help_file.readlines()
-    numTodo = len(todo)
+    Todos = help_file.readlines()
+    numTodo = len(Todos)
     print(numTodo)
-    for i in range(numTodo):
-        todo[i]
+    cnt = numTodo
+    for todo in Todos:
+        if(todo != " "):
+            print("[", cnt, "]", todo[:-1])
+            cnt-= 1
+
 
 def addItem(args):
-    RemTodo = open('todo.txt', 'a+')
+    RemTodo = open('todo.txt', 'r+')
     todoAdd = " ".join(args)
-    RemTodo.write(todoAdd)
-    RemTodo.write('\n')
+    content = RemTodo.read()
+    RemTodo.seek(0, 0)
+    RemTodo.write(todoAdd.rstrip('\r\n') + '\n' + content)
     print('Added todo: "', todoAdd, '"')
+
 
 def deleteItem(args):
     int(args[0])
 
-
 def completeItem(args):
-    print(args)
-
-
-def usage(args):
     print(args)
 
 

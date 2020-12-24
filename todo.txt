@@ -1,4 +1,7 @@
+modes
 add
 subs
 mult
 div
+mod
+mode
