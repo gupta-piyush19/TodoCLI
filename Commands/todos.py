@@ -1,7 +1,5 @@
 from datetime import date
 today = date.today()
-RemTodo = open('todo.txt', 'r+')
-CompTodo = open('done.txt', 'r+')
 
 
 def showItems(args):
@@ -72,10 +70,10 @@ def completeItem(args):
         RemTodo.seek(0, 0)
         RemTodo.write(compTodo.rstrip('\r\n') + '\n' + content)
 
-    
-
 
 def stats(args):
+    RemTodo = open('todo.txt', 'r+')
+    CompTodo = open('done.txt', 'r+')
     pending = len(RemTodo.readlines())
     completed = len(CompTodo.readlines())
     print(f"{today} Pending : {pending} Completed : {completed}")

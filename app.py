@@ -21,6 +21,8 @@ def parse(command):
 
 
 def main():
+    t = open('todo.txt', 'w')
+    d = open('done.txt', 'w')
     with open('help.txt', 'r') as help_file:
         print(help_file.read())
 
